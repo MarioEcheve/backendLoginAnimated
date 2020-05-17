@@ -12,11 +12,6 @@ Users.create({
   name: "Mario",
 });
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
 app.get("*", (req, res) => {
   Users.find().then((x) => res.send(x));
 });
