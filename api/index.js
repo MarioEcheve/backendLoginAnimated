@@ -13,6 +13,7 @@ Users.create({
 });
 
 app.get("*", (req, res) => {
+  console.log(1);
   Users.find().then((x) => res.send(x));
 });
 
