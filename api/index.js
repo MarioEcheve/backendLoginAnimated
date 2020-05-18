@@ -1,20 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const app = express();
+app.use(bodyParser.json());
+const Plato = require("./routes/plato");
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const Users = mongoose.model("User", new mongoose.Schema({ name: String }));
-Users.create({
-  name: "Mario",
-});
-
-app.get("*", (req, res) => {
-  console.log(1);
-  Users.find().then((x) => res.send(x));
-});
+app.use("/api/Plato", Plato);
 
 module.exports = app;
